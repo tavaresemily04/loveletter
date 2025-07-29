@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>To My Love</title>
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       overflow: hidden;
       font-family: 'Courier New', monospace;
       background: linear-gradient(#FFD1DC, #FFDEE9);
       transition: background 5s ease;
       height: 100vh;
+      color: #000; /* default text color */
     }
-
     .sky {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.pinimg.com/736x/06/84/0f/06840fe14f2de56534fbb0c4bc1024fc.jpg') repeat;
+      width: 100%; height: 100%;
+      background: url('https://m.media-amazon.com/images/I/61LHmOKub4L.__AC_SY300_SX300_QL70_FMwebp_.jpg') repeat;
       background-size: cover;
       animation: moveSky 60s linear infinite;
       z-index: 0;
     }
-
     @keyframes moveSky {
       0% {background-position: 0 0;}
       100% {background-position: -1000px 0;}
     }
-
     .envelope {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 250px;
-      height: 150px;
+      width: 250px; height: 150px;
       background: pink;
       border: 2px solid #fff;
       border-radius: 10px;
@@ -44,40 +38,35 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       transition: transform 1s ease;
     }
-
     .envelope.open {
       transform: translate(-50%, -300%);
     }
-
     .heart {
       position: absolute;
-      top: 60px;
-      left: 100px;
-      width: 50px;
-      height: 50px;
+      top: 60px; left: 100px;
+      width: 50px; height: 50px;
       background: red;
       clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 75%, 20% 100%, 0 35%);
     }
-
     .letter {
       display: none;
       position: absolute;
-      top: 20%;
-      left: 50%;
+      top: 20%; left: 50%;
       transform: translateX(-50%);
-      width: 80%;
-      max-width: 500px;
+      width: 80%; max-width: 500px;
       padding: 20px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
       z-index: 3;
+      color: #000; /* make sure text is black on white bg */
+      line-height: 1.5;
+      font-size: 1.1rem;
+      user-select: text;
     }
-
     .hold-button {
       position: absolute;
-      top: 70%;
-      left: 50%;
+      top: 70%; left: 50%;
       transform: translateX(-50%);
       background: #f89;
       padding: 10px 20px;
@@ -86,24 +75,23 @@
       cursor: pointer;
       border-radius: 10px;
       z-index: 3;
+      user-select: none;
     }
-
     .reply-box {
       margin-top: 20px;
     }
-
     textarea {
       width: 100%;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
       resize: none;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
     }
-
     .home-link {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 10px; left: 10px;
       color: white;
       background: rgba(0,0,0,0.5);
       padding: 8px 12px;
@@ -119,7 +107,7 @@
 <a href="https://tavaresemily04.github.io/iloveeeyouuu/" class="home-link">← Back Home</a>
 <div class="sky"></div>
 
-<div class="envelope" id="envelope">
+<div class="envelope" id="envelope" title="Click to open envelope">
   <div class="heart"></div>
 </div>
 
@@ -128,20 +116,16 @@
 <div class="letter" id="letter">
   <p id="message">
     Dear Love Of My Life,<br><br>
-    
-  I am so happy and honored to be able you see you celibrate your birthday. Sadly this is your last year being a minor (just you wait unitl I turn 18 though👅) From the moment we met, you've made my world so much brighter.  
-   Your smile, your laugh, your presence — everything about you makes my heart happy.(bro i got that shakesphere rizz :P) Your deserve the best birthday ever.
-      
+    I am so happy and honored to be able to see you celebrate your birthday.  
+    Sadly this is your last year being a minor (just you wait until I turn 18 though👅).  
+    From the moment we met, you've made my world so much brighter.<br><br>
+    Your smile, your laugh, your presence — everything about you makes my heart happy.  
+    (Bro, I got that Shakespeare rizz :P) You deserve the best birthday ever.<br><br>
     I just wanted you to know how much you mean to me.  
-    Thank you for being so loving, kind, and genuine.  
-      
-    Happy Birthday, 
-    I’m so lucky to call you mine <3
-
-      Love you always,  
-      Emily Tavares
-
-
+    Thank you for being so loving, kind, and genuine.<br><br>
+    Happy Birthday, I’m so lucky to call you mine &lt;3<br><br>
+    Love you always,<br>
+    Emily Tavares
   </p>
 
   <div class="reply-box">
@@ -150,6 +134,7 @@
   </div>
 </div>
 
+<!-- Remove or replace with your own sound file -->
 <audio id="sound" src="paper.mp3" preload="auto"></audio>
 
 <script>
@@ -169,8 +154,10 @@
     holdTimeout = setTimeout(() => {
       letter.style.display = 'block';
       holdBtn.style.display = 'none';
-      sound.play();
+      // sound.play(); // Uncomment if you have the sound file
       document.body.style.background = 'linear-gradient(#1b2735, #090e1f)';
+      letter.style.background = 'rgba(255, 255, 255, 0.95)'; // Keep letter bg visible on dark bg
+      letter.style.color = '#000'; // Text black on white bg
     }, 2000);
   });
 
@@ -182,6 +169,9 @@
     clearTimeout(holdTimeout);
   });
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
