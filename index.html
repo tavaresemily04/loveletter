@@ -87,6 +87,24 @@
       font-size: 14px;
       z-index: 4;
     }
+    #musicControl {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(255, 182, 193, 0.85);
+      border: none;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+      transition: background 0.3s ease;
+    }
+    #musicControl:hover {
+      background: rgba(255, 105, 180, 0.95);
+    }
   </style>
 </head>
 <body>
@@ -104,9 +122,9 @@
     I am so happy and honored to be able to see you celebrate your birthday.  
     Sadly this is your last year being a minor (just you wait until I turn 18 though👅).  
     From the moment we met, you have made my world so much brighter.<br><br>
-    Your smile, your laugh, your presence — everything about you makes my heart happy.  
+    Your smile, your laugh, your presence, everything about you makes me happy.  
     (Bro, I got that Shakespeare rizz :P) You deserve the best birthday ever. I am excited to be able to be 
-    part of your 17th year and see all the stuff you will accomplish <br><br>
+    part of your 17th year and see all the stuff you will accomplish.<br><br>
     Happy Birthday, I am lucky to call you mine &lt;3<br><br>
     Love you always,<br>
     Emily Tavares
@@ -118,24 +136,37 @@
   </div>
 </div>
 
-<!-- Remove or replace with your own sound file -->
-<audio id="sound" src="assets/Fly me to the moon.mp3" preload="auto"></audio>
+<!-- Background music -->
+<audio id="bgMusic" src="assets/Fly me to the moon.mp3" preload="auto"></audio>
+
+<button id="musicControl" aria-label="Play or Pause Music">▶️ Play Music</button>
 
 <script>
   const envelope = document.getElementById('envelope');
   const letter = document.getElementById('letter');
-  const sound = document.getElementById('sound');
+  const music = document.getElementById('bgMusic');
+  const musicControl = document.getElementById('musicControl');
+  let isPlaying = false;
 
   envelope.addEventListener('click', () => {
     envelope.classList.add('open');
     letter.style.display = 'block';
-    // sound.play(); // Uncomment if you have the sound file
     document.body.style.background = 'linear-gradient(#1b2735, #090e1f)';
     letter.style.background = 'rgba(255, 255, 255, 0.95)';
     letter.style.color = '#000';
+  });
+
+  musicControl.addEventListener('click', () => {
+    if (isPlaying) {
+      music.pause();
+      musicControl.textContent = '▶️ Play Music';
+    } else {
+      music.play();
+      musicControl.textContent = '⏸️ Pause Music';
+    }
+    isPlaying = !isPlaying;
   });
 </script>
 
 </body>
 </html>
-
