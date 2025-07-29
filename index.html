@@ -59,23 +59,10 @@
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
       z-index: 3;
-      color: #000; /* make sure text is black on white bg */
+      color: #000;
       line-height: 1.5;
       font-size: 1.1rem;
       user-select: text;
-    }
-    .hold-button {
-      position: absolute;
-      top: 70%; left: 50%;
-      transform: translateX(-50%);
-      background: #f89;
-      padding: 10px 20px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 10px;
-      z-index: 3;
-      user-select: none;
     }
     .reply-box {
       margin-top: 20px;
@@ -111,8 +98,6 @@
   <div class="heart"></div>
 </div>
 
-<button class="hold-button" id="holdBtn">Hold to Reveal</button>
-
 <div class="letter" id="letter">
   <p id="message">
     Dear Love Of My Life,<br><br>
@@ -140,38 +125,18 @@
 <script>
   const envelope = document.getElementById('envelope');
   const letter = document.getElementById('letter');
-  const holdBtn = document.getElementById('holdBtn');
   const sound = document.getElementById('sound');
 
-  // Envelope opens on click
   envelope.addEventListener('click', () => {
     envelope.classList.add('open');
-  });
-
-  // Hold-to-reveal logic
-  let holdTimeout;
-  holdBtn.addEventListener('mousedown', () => {
-    holdTimeout = setTimeout(() => {
-      letter.style.display = 'block';
-      holdBtn.style.display = 'none';
-      // sound.play(); // Uncomment if you have the sound file
-      document.body.style.background = 'linear-gradient(#1b2735, #090e1f)';
-      letter.style.background = 'rgba(255, 255, 255, 0.95)'; // Keep letter bg visible on dark bg
-      letter.style.color = '#000'; // Text black on white bg
-    }, 2000);
-  });
-
-  holdBtn.addEventListener('mouseup', () => {
-    clearTimeout(holdTimeout);
-  });
-
-  holdBtn.addEventListener('mouseleave', () => {
-    clearTimeout(holdTimeout);
+    letter.style.display = 'block';
+    // sound.play(); // Uncomment if you have the sound file
+    document.body.style.background = 'linear-gradient(#1b2735, #090e1f)';
+    letter.style.background = 'rgba(255, 255, 255, 0.95)';
+    letter.style.color = '#000';
   });
 </script>
 
 </body>
 </html>
 
-</body>
-</html>
